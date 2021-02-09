@@ -1,14 +1,13 @@
 import chai from 'chai'
-import { Request, Response, NextFunction, json } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { ImageController } from '../src/controllers/imageController'
-import { ImageService } from '../src/services/imageService'
+import { ImageService, ResizeParams } from '../src/services/imageService'
 import 'mocha'
 
 const expect = chai.expect
 
 describe('ImageController', () => {
   const mockNextFunction = {} as NextFunction
-  const imageController = new ImageController({} as ImageService)
 
   it('returns 400 if no QS params provided', async () => {
     const request = { query: {} } as Request
@@ -18,11 +17,15 @@ describe('ImageController', () => {
         return body
       }
     } as Response
-
     response.status = (status) => {
       expect(status).to.eq(400)
       return response
     }
+    const imageServiceMock = { resize: (_: ResizeParams) => {
+      expect.fail('Should not call resize with invalid params')
+    } } as ImageService
+
+    const imageController = new ImageController(imageServiceMock)
 
     imageController.resizeSingle(request, response, mockNextFunction)
   })
