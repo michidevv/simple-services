@@ -12,7 +12,7 @@ const upload = multer()
 app.disable('x-powered-by') // Don't leak framework name
 
 app.listen(PORT, () => {
-  console.info(`Listening on ${PORT}`)
+  console.info(`image-processor listening on ${PORT}`)
 })
 
 const SUPPORTED_MIMETYPES: Record<string, boolean> = {
