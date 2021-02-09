@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
-    "install-build": "npm ci && npm run build",
+    "install-build": "npm ci && npm t && npm run build",
     "start": "node dist/app.js",
     "test": "ts-mocha --paths tests/*.ts"
   },
