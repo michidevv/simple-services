@@ -15,6 +15,7 @@ app.listen(PORT, () => {
   console.info(`image-processor listening on ${PORT}`)
 })
 
+const SIZE_THRESHOLD = 2000
 const SUPPORTED_MIMETYPES: Record<string, boolean> = {
   'image/png': true,
   'image/webp': true,
@@ -30,6 +31,9 @@ app.post('/image/resize', upload.single('image'), (req, res) => {
   const width = +(req.query.width || '')
   if (!height || !width) {
     res.status(400).json({ error: 'No height or width query parameters provided' })
+    return
+  } else if (height > SIZE_THRESHOLD || width > SIZE_THRESHOLD) {
+    res.status(400).json({ error: `Exceeded max allowed size threshold of ${SIZE_THRESHOLD}` })
     return
   }
 
