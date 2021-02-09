@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "keyofStringsOnly": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "./tests/",
+    "./node_modules/",
+    "./dist/"
+  ]
+}
